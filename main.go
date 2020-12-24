@@ -154,14 +154,14 @@ func renderMetricsResponse() string {
 	for _, m := range metrics {
 		res += "# Start of metrics for " + m.Server + " \n"
 		if m.Success {
-			res += `lmp_current_players{server="` + m.Server + `"} ` + strconv.FormatInt(int64(len(m.CurrentPlayers)), 10) + "\n"
-			res += `lmp_subspaces_total{server="` + m.Server + `"} ` + strconv.FormatInt(int64(len(m.Subspaces)), 10) + "\n"
+			res += `lmp_current_players{server="` + m.Server + `"} ` + strconv.FormatInt(int64(len(m.CurrentState.CurrentPlayers)), 10) + "\n"
+			res += `lmp_subspaces_total{server="` + m.Server + `"} ` + strconv.FormatInt(int64(len(m.CurrentState.Subspaces)), 10) + "\n"
 
-			for _, s := range m.Subspaces {
+			for _, s := range m.CurrentState.Subspaces {
 				res += `lmp_subspaces_time{server="` + m.Server + `",subspace="` + strconv.FormatInt(int64(s.Id), 10) + `"} ` + strconv.FormatFloat(s.Time, 'f', 6, 64) + "\n"
 			}
 
-			for _, v := range m.Vessels {
+			for _, v := range m.CurrentState.Vessels {
 				res += `lmp_vessel_distance_travelled{server="` + m.Server + `",vessel="` + v.Name + `",type="` + v.Type + `",vesselId="` + v.Id + `"} ` + strconv.FormatFloat(v.DistanceTravelled, 'f', 6, 64) + "\n"
 
 				res += `lmp_vessel_lat{server="` + m.Server + `",vessel="` + v.Name + `",type="` + v.Type + `",vesselId="` + v.Id + `"} ` + strconv.FormatFloat(v.Lat, 'f', 6, 64) + "\n"
