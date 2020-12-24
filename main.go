@@ -1,9 +1,9 @@
 package main
 
 import (
-	"encoding/json"
 	"flag"
 	"fmt"
+	json "github.com/voxelbrain/jsonext"
 	"log"
 	"net/http"
 	"os"
@@ -69,6 +69,7 @@ type Metrics struct {
 	CurrentPlayers  []string
 	Success         bool
 	Duration        int64
+	json.CatchAll 	`jsonext:"catchall"`
 }
 
 var config Config
