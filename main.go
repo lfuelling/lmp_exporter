@@ -85,12 +85,13 @@ func loadMetrics() []Metrics {
 			log.Println("Error fetching '"+d+"'!", err)
 			serverMetrics = append(serverMetrics, Metrics{Success: false, Server: d, Duration: time.Now().UnixNano() - startTime})
 		} else {
-			var metrics Metrics
-			err := json.NewDecoder(resp.Body).Decode(&metrics)
+			var m []Metrics
+			err := json.NewDecoder(resp.Body).Decode(&m)
 			if err != nil {
 				log.Println("Error parsing '"+d+"'!", err)
 				serverMetrics = append(serverMetrics, Metrics{Success: false, Server: d, Duration: time.Now().UnixNano() - startTime})
 			} else {
+				var metrics = m[0]
 				serverMetrics = append(serverMetrics, Metrics{
 					Server:          d,
 					StartTime:       metrics.StartTime,
