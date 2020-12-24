@@ -1,9 +1,9 @@
 package main
 
 import (
+	"encoding/json"
 	"flag"
 	"fmt"
-	json "github.com/voxelbrain/jsonext"
 	"log"
 	"net/http"
 	"os"
@@ -18,58 +18,57 @@ type Config struct {
 }
 
 type Vessel struct {
-	Id                       string
-	Name                     string
-	Type                     string
-	DistanceTravelled        float64
-	Situation                string
-	Lat                      float64
-	Lon                      float64
-	Alt                      float64
-	SemiMajorAxis            float64
-	Eccentricity             float64
-	Inclination              float64
-	ArgumentOfPeriapsis      float64
-	LongitudeOfAscendingNode float64
-	MeanAnomaly              float64
-	Epoch                    float64
-	ReferenceBody            int64
+	Id                       string  `json:"Id"`
+	Name                     string  `json:"Name"`
+	Type                     string  `json:"Type"`
+	DistanceTravelled        float64 `json:"DistanceTravelled"`
+	Situation                string  `json:"Situation"`
+	Lat                      float64 `json:"Lat"`
+	Lon                      float64 `json:"Lon"`
+	Alt                      float64 `json:"Alt"`
+	SemiMajorAxis            float64 `json:"SemiMajorAxis"`
+	Eccentricity             float64 `json:"Eccentricity"`
+	Inclination              float64 `json:"Inclination"`
+	ArgumentOfPeriapsis      float64 `json:"ArgumentOfPeriapsis"`
+	LongitudeOfAscendingNode float64 `json:"LongitudeOfAscendingNode"`
+	MeanAnomaly              float64 `json:"MeanAnomaly"`
+	Epoch                    float64 `json:"Epoch"`
+	ReferenceBody            int64   `json:"ReferenceBody"`
 }
 
 type Subspace struct {
-	Id      int
-	Time    float64
-	Creator string
+	Id      int     `json:"Id"`
+	Time    float64 `json:"Time"`
+	Creator string  `json:"Creator"`
 }
 
 type GeneralSettings struct {
-	ServerName        string
-	Description       string
-	CountryCode       string
-	WebsiteText       string
-	Website           string
-	HasPassword       bool
-	HasAdminPassword  bool
-	MaxPlayers        int
-	MaxUsernameLength int
-	AutoDekessler     float64
-	AutoNuke          float64
-	Cheats            bool
-	AllowSackKerbals  bool
-	NumberOfAsteroids int
-	NumberOfComets    int
+	ServerName        string  `json:"ServerName"`
+	Description       string  `json:"Description"`
+	CountryCode       string  `json:"CountryCode"`
+	WebsiteText       string  `json:"WebsiteText"`
+	Website           string  `json:"Website"`
+	HasPassword       bool    `json:"HasPassword"`
+	HasAdminPassword  bool    `json:"HasAdminPassword"`
+	MaxPlayers        int     `json:"MaxPlayers"`
+	MaxUsernameLength int     `json:"MaxUsernameLength"`
+	AutoDekessler     float64 `json:"AutoDekessler"`
+	AutoNuke          float64 `json:"AutoNuke"`
+	Cheats            bool    `json:"Cheats"`
+	AllowSackKerbals  bool    `json:"AllowSackKerbals"`
+	NumberOfAsteroids int     `json:"NumberOfAsteroids"`
+	NumberOfComets    int     `json:"NumberOfComets"`
 }
 
 type Metrics struct {
 	Server          string
-	StartTime       string
-	Vessels         []Vessel
-	Subspaces       []Subspace
-	GeneralSettings GeneralSettings
-	CurrentPlayers  []string
+	StartTime       string          `json:"StartTime"`
+	Vessels         []Vessel        `json:"CurrentVessels"`
+	Subspaces       []Subspace      `json:"Subspaces"`
+	GeneralSettings GeneralSettings `json:"GeneralSettings"`
+	CurrentPlayers  []string        `json:"CurrentPlayers"`
 	Success         bool
 	Duration        int64
-	CatchAll		json.CatchAll
 }
 
 var config Config
