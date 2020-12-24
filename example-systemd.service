@@ -8,6 +8,7 @@ User=USER
 Group=USER
 Type=simple
 ExecStart=/path/to/exporter
+WorkingDirectory=/path/to
 
 [Install]
 WantedBy=multi-user.target
