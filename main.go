@@ -92,16 +92,10 @@ func loadMetrics() []Metrics {
 				serverMetrics = append(serverMetrics, Metrics{Success: false, Server: d, Duration: time.Now().UnixNano() - startTime})
 			} else {
 				var metrics = m[0]
-				serverMetrics = append(serverMetrics, Metrics{
-					Server:          d,
-					StartTime:       metrics.StartTime,
-					Vessels:         metrics.Vessels,
-					Subspaces:       metrics.Subspaces,
-					GeneralSettings: metrics.GeneralSettings,
-					CurrentPlayers:  metrics.CurrentPlayers,
-					Success:         true,
-					Duration:        time.Now().UnixNano() - startTime,
-				})
+				metrics.Server = d
+				metrics.Success = true
+				metrics.Duration = time.Now().UnixNano() - startTime
+				serverMetrics = append(serverMetrics, metrics)
 			}
 		}
 		err1 := resp.Body.Close()
