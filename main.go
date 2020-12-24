@@ -12,8 +12,8 @@ import (
 )
 
 type Config struct {
-	Servers       []string
-	ListenAddress string
+	Servers               []string
+	ListenAddress         string
 	DetailedVesselMetrics bool
 }
 
@@ -69,7 +69,7 @@ type Metrics struct {
 	CurrentPlayers  []string
 	Success         bool
 	Duration        int64
-	json.CatchAll 	`jsonext:"catchall"`
+	CatchAll		json.CatchAll
 }
 
 var config Config
@@ -182,9 +182,9 @@ func renderMetricsResponse() string {
 				res += `lmp_vessel_epoch{server="` + m.Server + `",vessel="` + v.Name + `",type="` + v.Type + `",vesselId="` + v.Id + `"} ` + strconv.FormatFloat(v.Epoch, 'f', 6, 64) + "\n"
 				res += `lmp_vessel_reference_body{server="` + m.Server + `",vessel="` + v.Name + `",type="` + v.Type + `",vesselId="` + v.Id + `"} ` + strconv.FormatInt(v.ReferenceBody, 10) + "\n"
 			}
-			res += `lmp_scrape_success{server="` + m.Server + `"} 1`+ "\n"
+			res += `lmp_scrape_success{server="` + m.Server + `"} 1` + "\n"
 		} else {
-			res += `lmp_scrape_success{server="` + m.Server + `"} 0`+ "\n"
+			res += `lmp_scrape_success{server="` + m.Server + `"} 0` + "\n"
 		}
 		res += `lmp_scrape_duration{server="` + m.Server + `"} ` + strconv.FormatInt(m.Duration, 10) + "\n"
 	}
