@@ -60,13 +60,17 @@ type GeneralSettings struct {
 	NumberOfComets    int     `json:"NumberOfComets"`
 }
 
-type Metrics struct {
-	Server          string
+type CurrentState struct {
 	StartTime       string          `json:"StartTime"`
 	Vessels         []Vessel        `json:"CurrentVessels"`
 	Subspaces       []Subspace      `json:"Subspaces"`
 	GeneralSettings GeneralSettings `json:"GeneralSettings"`
 	CurrentPlayers  []string        `json:"CurrentPlayers"`
+}
+
+type Metrics struct {
+	Server          string
+	CurrentState	CurrentState `json:"CurrentState"`
 	Success         bool
 	Duration        int64
 }
