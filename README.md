@@ -1,6 +1,6 @@
 # lmp-exporter
 
-A prometheus exporter that returns the metrics visible on the "website" of an LMP server.
+A prometheus exporter that returns the metrics visible on the "website" of an [LunaMultiplayer](https://github.com/LunaMultiplayer/LunaMultiplayer) server.
 
 ## Usage
 
