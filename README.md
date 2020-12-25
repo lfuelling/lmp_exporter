@@ -16,6 +16,8 @@ A prometheus exporter that returns the metrics visible on the "website" of an [L
 
 ### Queries
 
+- Number of user made vessels
+  - `count(lmp_vessel_alt{type!="SpaceObject"})`
 - Total distance traveled for all user made vessels
    - `lmp_vessel_distance_travelled{type!="SpaceObject"}`
 - Altitude of all planes named "Mallard"
