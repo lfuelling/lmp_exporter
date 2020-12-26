@@ -7,8 +7,8 @@ After=network-online.target
 User=USER
 Group=USER
 Type=simple
-ExecStart=/path/to/exporter
-WorkingDirectory=/path/to
+ExecStart=/path/to/LmpExporter/lmp_exporter
+WorkingDirectory=/path/to/LmpExporter/
 
 [Install]
 WantedBy=multi-user.target
